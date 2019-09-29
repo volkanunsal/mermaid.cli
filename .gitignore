@@ -2,7 +2,7 @@ node_modules/
 *.svg
 *.png
 *.min.js
-*.bundle.js
+# *.bundle.js
 *.pdf
 fontawesome/
 .DS_Store
