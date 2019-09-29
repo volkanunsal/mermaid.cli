@@ -1,7 +1,7 @@
 node_modules/
 *.svg
 *.png
-*.min.js
+# *.min.js
 # *.bundle.js
 *.pdf
 fontawesome/
