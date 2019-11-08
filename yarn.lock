@@ -1675,7 +1675,7 @@ lru-cache@^4.0.1:
 
 mermaid@volkanunsal/mermaid#build:
   version "8.4.0"
-  resolved "https://codeload.github.com/volkanunsal/mermaid/tar.gz/f13860d10390b16947150b1daa8ddac09a532db5"
+  resolved "https://codeload.github.com/volkanunsal/mermaid/tar.gz/0d35a53cc438ece8b532302536787a2df094347d"
   dependencies:
     "@braintree/sanitize-url" "^3.1.0"
     crypto-random-string "^3.0.1"
