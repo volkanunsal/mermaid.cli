@@ -1,2 +1,0 @@
-- When input is empty string or wrong data(buffer)
-- Write some tests

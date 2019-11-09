@@ -22,9 +22,19 @@ const checkConfigFile = file => {
   }
 };
 
-commander.version(pkg.version).option('-t, --theme [theme]', 'Theme of the chart, could be default, forest, dark or neutral. Optional. Default: default', /^default|forest|dark|neutral$/, 'default').option('-w, --width [width]', 'Width of the page. Optional. Default: 800', /^\d+$/, '800').option('-H, --height [height]', 'Height of the page. Optional. Default: 600', /^\d+$/, '600').option('-i, --input <input>', 'Input mermaid file. Required.').option('-o, --output [output]', 'Output file. It should be either svg, png or pdf. Optional. Default: input + ".svg"').option('-b, --backgroundColor [backgroundColor]', 'Background color. Example: transparent, red, \'#F0F0F0\'. Optional. Default: white').option('-c, --configFile [configFile]', 'JSON configuration file for mermaid. Optional').option('-C, --cssFile [cssFile]', 'CSS file for the page. Optional').option('-p --puppeteerConfigFile [puppeteerConfigFile]', 'JSON configuration file for puppeteer. Optional').parse(process.argv);
+commander.version(pkg.version).option('-t, --theme [theme]', 'Theme of the chart, could be default, forest, dark or neutral. Optional. Default: default', /^default|forest|dark|neutral$/, 'default').option('-w, --width [width]', 'Width of the page. Optional. Default: 800', /^\d+$/, '800').option('-H, --height [height]', 'Height of the page. Optional. Default: 600', /^\d+$/, '600').option('-i, --input <input>', 'Input mermaid file. Required.').option('-o, --output [output]', 'Output file. It should be either svg, png or pdf. Optional. Default: input + ".svg"').option('-b, --backgroundColor [backgroundColor]', "Background color. Example: transparent, red, '#F0F0F0'. Optional. Default: white").option('-c, --configFile [configFile]', 'JSON configuration file for mermaid. Optional').option('-C, --cssFile [cssFile]', 'CSS file for the page. Optional').option('-p --puppeteerConfigFile [puppeteerConfigFile]', 'JSON configuration file for puppeteer. Optional').parse(process.argv);
 
-let { theme, width, height, input, output, backgroundColor, configFile, cssFile, puppeteerConfigFile } = commander;
+let {
+  theme,
+  width,
+  height,
+  input,
+  output,
+  backgroundColor,
+  configFile,
+  cssFile,
+  puppeteerConfigFile
+} = commander;
 
 // check input file
 if (!input) {
@@ -107,12 +117,24 @@ _asyncToGenerator(function* () {
   } else if (output.endsWith('png')) {
     const clip = yield page.$eval('svg', function (svg) {
       const react = svg.getBoundingClientRect();
-      return { x: react.left, y: react.top, width: react.width, height: react.height };
+      return {
+        x: react.left,
+        y: react.top,
+        width: react.width,
+        height: react.height
+      };
     });
-    yield page.screenshot({ path: output, clip, omitBackground: backgroundColor === 'transparent' });
+    yield page.screenshot({
+      path: output,
+      clip,
+      omitBackground: backgroundColor === 'transparent'
+    });
   } else {
     // pdf
-    yield page.pdf({ path: output, printBackground: backgroundColor !== 'transparent' });
+    yield page.pdf({
+      path: output,
+      printBackground: backgroundColor !== 'transparent'
+    });
   }
 
   browser.close();
